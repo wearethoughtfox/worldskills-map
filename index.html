@@ -81,6 +81,50 @@ div.tooltip a {
   text-transform: uppercase;
 }
 
+.map-buttons {
+  position: absolute;
+  left: 0.5rem;
+  bottom: 3rem;
+}
+
+@media screen and (min-width: 49em) {
+  .map-buttons {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    left: auto;
+    bottom: auto;
+  }
+}
+
+.zoom-buttons {
+  background-color: #cccccc;
+  border: 0 none;
+  color: #333333;
+  display: block;
+  height: 2rem;
+  margin-bottom: 0.2rem;
+  width: 2rem;
+}
+
+.zoom-buttons:hover {
+  background-color: #C5C5C5;
+  color: #fff;
+  cursor: pointer;
+  cursor: hand;
+}
+
+.hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
 </style>
 
 </head>
@@ -91,8 +135,10 @@ div.tooltip a {
   <p>Loading...</p>
 </section>
 
-<button id="zoom_in">+</button>
-<button id="zoom_out">-</button>
+<div class="map-buttons">
+  <button class="zoom-buttons" id="zoom_in">+</button>
+  <button class="zoom-buttons" id="zoom_out">-</button>
+</div>
 
 <script src="javascripts/d3.min.js"></script>
 <script src="javascripts/d3-geo-projection.min.js"></script>

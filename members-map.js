@@ -137,9 +137,11 @@ function draw(topo, activeCountries, coastline) {
               .classed("hidden", false)
               .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
               .html('<a href="'+ d.url + '">' + d.name + '</a>');
+              console.log("over");
           })
           .on("mouseout",  function(d,i) {
             tooltip.classed("hidden", true);
+            console.log("off");
           });
 
     //when you click on a country go to the member page
