@@ -7,9 +7,9 @@ var windowWidth = window.innerWidth;
 // Set the height and width
 var padding = 5;
 var scaleSetting = 1.6;
-var scaleSetting2 = 0.602;
+var mapHeightWidthRatio = 0.602;
 var width = document.getElementById('map').offsetWidth-padding;
-var height = width * scaleSetting2;
+var height = width * mapHeightWidthRatio;
 var activeCountries, topo, borders, coastline, projection, path, svg, g;
 var tooltip = d3.select("#map").append("div").attr("class", "tooltip hidden");
 
