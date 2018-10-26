@@ -45,7 +45,7 @@ function ready(error, world, active) {
   topo = countries;
   activeCountries = active;
 
-  coastline = topojson.mesh(world, world.objects.world, function(a, b) { return a === b });
+  coastline = topojson.mesh(world, world.objects.world, function(a, b) { return a === b; });
 
   topo.forEach(function(d, i) {
       activeCountries.forEach(function(e, j) {
@@ -53,8 +53,8 @@ function ready(error, world, active) {
               e.geometry = d.geometry;
               e.type = d.type;
           }
-      })
-  })
+      });
+  });
 
   draw(topo, activeCountries, coastline);
 }
@@ -91,10 +91,10 @@ function draw(topo, activeCountries, coastline) {
             tooltip
               .classed("hidden", false)
               .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-              .html('<a href="'+ d.url + '">' + d.name + '</a>')
+              .html('<a href="'+ d.url + '">' + d.name + '</a>');
           })
           .on("mouseout",  function(d,i) {
-            tooltip.classed("hidden", true)
+            tooltip.classed("hidden", true);
           });
 
     //when you click on a country go to the member page
@@ -103,11 +103,11 @@ function draw(topo, activeCountries, coastline) {
     activeCountry
       .on("mouseover", function() {
         d3.select(this)
-          .classed("active", true )
+          .classed("active", true );
         })
       .on("mouseout",  function() {
         d3.select(this)
-          .classed("active", false)
+          .classed("active", false);
         });
      }
 
