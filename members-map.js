@@ -21,7 +21,7 @@ var offsetT =document.getElementById('map').offsetTop+(height/60);
 
 //zoom set up
 var mapZoom = d3.zoom()
-              .scaleExtent([1, 4])
+              .scaleExtent([1, 9])
               .translateExtent([[0,0], [width, height]])
               .extent([[0, 0], [width, height]])
               .on("zoom", freeZoom);
