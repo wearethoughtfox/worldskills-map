@@ -11,7 +11,13 @@ var mapHeightWidthRatio = 0.602;
 var width = document.getElementById('map').offsetWidth-padding;
 var height = width * mapHeightWidthRatio;
 var activeCountries, topo, borders, coastline, projection, path, svg, g;
+
+//tooltip set up
 var tooltip = d3.select("#map").append("div").attr("class", "tooltip hidden");
+
+//ofsets plus width/height of transform, plus 20 px of padding, plus 20 extra for tooltip offset off mouse
+var offsetL = document.getElementById('map').offsetLeft+(width/60);
+var offsetT =document.getElementById('map').offsetTop+(height/60);
 
 //zoom set up
 var mapZoom = d3.zoom()
@@ -121,10 +127,6 @@ function draw(topo, activeCountries, coastline) {
       .attr("class", "member")
       .attr("id", function(d) { return d.id; })
       .attr("d", path);
-
-   //ofsets plus width/height of transform, plus 20 px of padding, plus 20 extra for tooltip offset off mouse
-  var offsetL = document.getElementById('map').offsetLeft+(width/60);
-  var offsetT =document.getElementById('map').offsetTop+(height/60);
 
   //map is only interactive on larger screens
   if (windowWidth > 752) {
