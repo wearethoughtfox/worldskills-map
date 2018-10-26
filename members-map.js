@@ -6,7 +6,7 @@ var windowWidth = window.innerWidth;
 
 // Set the height and width
 var padding = 5;
-var scaleSetting = 1.5;
+var scaleSetting = 1.6;
 var mapHeightWidthRatio = 0.602;
 var width = document.getElementById('map').offsetWidth-padding;
 var height = width * mapHeightWidthRatio;
