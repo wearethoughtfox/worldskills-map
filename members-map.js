@@ -13,6 +13,26 @@ var height = width * mapHeightWidthRatio;
 var activeCountries, topo, borders, coastline, projection, path, svg, g;
 var tooltip = d3.select("#map").append("div").attr("class", "tooltip hidden");
 
+//zoom set up
+var mapZoom = d3.zoom()
+              .scaleExtent([1, 4])
+              .translateExtent([[0,0], [width, height]])
+              .extent([[0, 0], [width, height]])
+              .on("zoom", freeZoom);
+
+function freeZoom() {
+  map.attr("transform", d3.event.transform);
+}
+
+d3.select("#zoom_in").on("click", function() {
+  mapZoom.scaleBy(svg.transition().duration(500), 1.1);
+});
+
+d3.select("#zoom_out").on("click", function() {
+  mapZoom.scaleBy(svg.transition().duration(500), 0.9);
+});
+
+//Loading screen function
 function removeLoadingScreen() {
   var loadingScreenEl = document.getElementById('loading');
 
@@ -49,9 +69,10 @@ function setup(width,height){
       .append("svg")
       .attr("width", width)
       .attr("height", height)
-      .append("g");
+      .call(mapZoom)
+      .on("wheel.zoom", null); // disable scroll zoom
 
-  g = svg.append("g");
+  map = svg.append("g");
 }
 
 //Loads in the world data and the active countries
@@ -82,16 +103,16 @@ function ready(error, world, active) {
 
 function draw(topo, activeCountries, coastline) {
 
-  var activeCountry = g.selectAll(".activeCountry").data(activeCountries);
+  var activeCountry = map.selectAll(".activeCountry").data(activeCountries);
 
-   g.selectAll(".country")
+   map.selectAll(".country")
         .data(topo)
         .enter().append("path")
         .attr("class", "country")
         .attr("id", function(d) { return d.id; })
         .attr("d", path);
 
-   g.insert("path", ".graticule")
+   map.insert("path", ".graticule")
       .datum(coastline)
       .attr("class","coastline")
       .attr("d", path);
