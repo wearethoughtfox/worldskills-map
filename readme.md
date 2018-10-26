@@ -1,6 +1,6 @@
 ## D3
-- D3: https://github.com/d3/d3/releases/tag/v3.5.17
-- Geoprojection 0.2.16
+- D3  https://github.com/d3/d3/releases/tag/v4.13.0
+- D3 Geoprojection https://github.com/d3/d3-geo-projection/releases/tag/v2.4.1
 
 ## Get the data from Natural Earth
 Here’s the [main download page for Natural Earth](http://www.naturalearthdata.com/downloads/). Depending on the level of detail you can choose from:
