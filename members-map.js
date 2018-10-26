@@ -107,6 +107,18 @@ function ready(error, world, active) {
   removeLoadingScreen();
 }
 
+function handleMouseOver(d,i){
+    var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d); } );
+    tooltip
+      .classed("hidden", false)
+      .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
+      .html('<a href="'+ d.url + '">' + d.name + '</a>');
+}
+
+function handleMouseOut(){
+  tooltip.classed("hidden", true);
+}
+
 function draw(topo, activeCountries, coastline) {
 
   var activeCountry = map.selectAll(".activeCountry").data(activeCountries);
@@ -130,35 +142,23 @@ function draw(topo, activeCountries, coastline) {
 
   //map is only interactive on larger screens
   if (windowWidth > 752) {
-    activeCountryPath
-      .on("mousemove", function(d,i) {
-          var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d,10); } );
-            tooltip
-              .classed("hidden", false)
-              .attr("style", "left:"+(mouse[0]+offsetL)+"px;top:"+(mouse[1]+offsetT)+"px")
-              .html('<a href="'+ d.url + '">' + d.name + '</a>');
-              console.log("over");
-          })
-          .on("mouseout",  function(d,i) {
-            tooltip.classed("hidden", true);
-            console.log("off");
-          });
 
     //when you click on a country go to the member page
     activeCountryPath.on('click', function(d){ window.location = d.url;});
 
     //change the colour of the country on hover
     activeCountryPath
-      .on("mouseover", function() {
-        d3.select(this)
+      .on("mouseover", function(d,i) {
+       handleMouseOver(d,i);
+       d3.select(this)
           .classed("active", true );
         })
       .on("mouseout",  function() {
+        handleMouseOut();
         d3.select(this)
           .classed("active", false);
         });
      }
-
 }
 
 function redraw() {
