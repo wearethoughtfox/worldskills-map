@@ -117,7 +117,7 @@ function draw(topo, activeCountries, coastline) {
       .attr("class","coastline")
       .attr("d", path);
 
-   activeCountry.enter().append("path")
+   var activeCountryPath = activeCountry.enter().append("path")
       .attr("class", "member")
       .attr("id", function(d) { return d.id; })
       .attr("d", path);
@@ -126,8 +126,9 @@ function draw(topo, activeCountries, coastline) {
   var offsetL = document.getElementById('map').offsetLeft+(width/60);
   var offsetT =document.getElementById('map').offsetTop+(height/60);
 
+  //map is only interactive on larger screens
   if (windowWidth > 752) {
-    activeCountry
+    activeCountryPath
       .on("mousemove", function(d,i) {
           var mouse = d3.mouse(svg.node()).map( function(d) { return parseInt(d,10); } );
             tooltip
@@ -140,9 +141,10 @@ function draw(topo, activeCountries, coastline) {
           });
 
     //when you click on a country go to the member page
-    activeCountry.on('click', function(d){ window.location = d.url;});
+    activeCountryPath.on('click', function(d){ window.location = d.url;});
 
-    activeCountry
+    //change the colour of the country on hover
+    activeCountryPath
       .on("mouseover", function() {
         d3.select(this)
           .classed("active", true );
