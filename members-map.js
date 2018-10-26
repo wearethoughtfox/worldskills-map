@@ -58,12 +58,12 @@ setup(width,height);
 //initial setup
 function setup(width,height){
   //Try d3.geo.winkel3() / d3.geo.mercator() / d3.geo.naturalEarth() / d3.geo.times()
-  projection =  d3.geo.times()
+  projection =  d3.geoWinkel3()
     .translate([(width/2), (height/scaleSetting)])
     .scale(width / scaleSetting / Math.PI)
     .rotate([-11,0]);
 
-  path = d3.geo.path().projection(projection);
+  path = d3.geoPath().projection(projection);
 
   svg = d3.select("#map")
       .append("svg")
