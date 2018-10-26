@@ -56,9 +56,6 @@ function ready(error, world, active) {
       })
   })
 
-    console.log (activeCountries);
-     console.log (topo);
-
   draw(topo, activeCountries, coastline);
 }
 
