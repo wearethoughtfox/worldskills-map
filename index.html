@@ -55,12 +55,41 @@ div.tooltip a {
   cursor: hand;
 }
 
+#loading {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2000;
+  width: auto;
+  height: auto;
+  background: #e5e5e5;
+  opacity: 1;
+  transition: opacity .2s ease-out;
+}
+
+#loading p {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  margin-top: -.5em;
+  font-weight: bold;
+  line-height: 1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 </style>
 
 </head>
 <body>
 
 <div id="map"></div>
+<section id="loading">
+  <p>Loading...</p>
+</section>
 
 <script src="javascripts/d3.js"></script>
 <script src="javascripts/d3.geo.projection.js"></script>

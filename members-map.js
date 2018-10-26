@@ -13,6 +13,26 @@ var height = width * mapHeightWidthRatio;
 var activeCountries, topo, borders, coastline, projection, path, svg, g;
 var tooltip = d3.select("#map").append("div").attr("class", "tooltip hidden");
 
+function removeLoadingScreen() {
+  var loadingScreenEl = document.getElementById('loading');
+
+  if (!loadingScreenEl) {
+    return;
+  }
+
+  if(typeof loadingScreenEl.style['transition'] !== 'undefined') {
+    loadingScreenEl && loadingScreenEl.addEventListener('transitionend', function () {
+      loadingScreenEl.parentNode.removeChild(loadingScreenEl);
+    });
+
+    loadingScreenEl.style.opacity = '0';
+  }
+
+  else {
+    loadingScreenEl.parentNode.removeChild(loadingScreenEl);
+  }
+}
+
 setup(width,height);
 
 //initial setup
@@ -57,6 +77,7 @@ function ready(error, world, active) {
   });
 
   draw(topo, activeCountries, coastline);
+  removeLoadingScreen();
 }
 
 function draw(topo, activeCountries, coastline) {
